@@ -16,17 +16,97 @@ import React, { useState } from 'react';
 function App() {
 
   const [filter,setFilter]=useState('ALL');
-  const [cls, setCls] = useState(0);
 
   const handleFilterChange=(e)=>{setFilter( e.target.value);}
-  const handleColorChange=(e)=>{
-    if (cls<Colors.palette.length-1) setCls(cls+1);
-    else setCls(0);
-  }
   const handleExpandChange=(e)=>{
     if (e.target.checked) document.getElementsByClassName('app-header')[0].classList.add("header-expand");
     else document.getElementsByClassName('app-header')[0].classList.remove("header-expand");
   }
+
+  const [todos, setTodos] = React.useState([
+    {
+      text: "This is a sampe todo",
+      isDone: false
+    }
+  ]);
+
+  function Todo({ task, index, markTodo, removeTodo }) {
+    return (
+      <div class="task">
+      <div class="task-cl"/>
+      <span style={{ textDecoration: task.isDone ? "line-through" : "" }}>{task.text}</span>
+      <div class="task-controls">
+        <div class="toggle">
+          <input type="checkbox" id="toggle" />
+          <label for="toggle"></label>
+        </div>
+        <button class="checkbutton" onClick={() => removeTodo(index)}><TrashFill/></button>
+      </div>
+    </div>
+    );
+  }
+
+  function FormTodo({ addTodo }) {
+    const [value, setValue] = React.useState("");
+    const [cls, setCls] = useState(0);
+  
+    const handleColorChange=(e)=>{
+      if (cls<Colors.palette.length-1) setCls(cls+1);
+      else setCls(0);
+    }
+
+    const handleSubmit = e => {
+      e.preventDefault();
+      if (!value) return;
+      addTodo(value);
+      setValue("");
+    };
+  
+    return (
+      <div class="header-add-block">
+      <label class="new-task-label">
+        <input type="text" class="new-task-input" placeholder="Add items..." onChange={e => setValue(e.target.value)}/>
+        <ClipboardFill class="icon" title={Colors.palette[cls].color}  onClick={handleColorChange} style={{color: Colors.palette[cls].hex}}/>
+      </label>
+      <button class="add-task-button" onClick={handleSubmit}>Добавить</button>
+    </div>
+    );
+  }
+
+  const addTodo = text => {
+    const newTodos = [...todos, { text }];
+    setTodos(newTodos);
+  };
+
+  const markTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].isDone = true;
+    setTodos(newTodos);
+  };
+
+  const removeTodo = index => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
       <div class="background-main">
@@ -40,13 +120,7 @@ function App() {
                 <div class="hamburger-line"/>
               </label>
             </div>
-            <div class="header-add-block">
-              <label class="new-task-label">
-                <input type="text" class="new-task-input" placeholder="Add items..."/>
-                <ClipboardFill class="icon" title={Colors.palette[cls].color}  onClick={handleColorChange} style={{color: Colors.palette[cls].hex}}/>
-              </label>
-              <button class="add-task-button" onClick={()=>console.log(123)}>Добавить</button>
-            </div>
+            <FormTodo addTodo={addTodo} />
             <div class="radio-container" style={{paddingRight: "0px"}}>
               <div class="tabs">
                 <input onChange={handleFilterChange} value="ALL" type="radio" id="radio-1" name="tabs" defaultChecked/>
@@ -60,22 +134,15 @@ function App() {
             </div>
           </div>
         <div class="task-container">
-
-
-          <div class="task">
-            <div class="task-cl"/>
-            <span>Hello!</span>
-            <div class="task-controls">
-              <div class="toggle">
-                <input type="checkbox" id="toggle" />
-                <label for="toggle"></label>
-              </div>
-              <button class="checkbutton" onClick={()=>console.log(123)}><TrashFill/></button>
-            </div>
-          </div>
-
-
-
+          {todos.map((task, index) => (
+          <Todo
+                key={index}
+                index={index}
+                task={task}
+                markTodo={markTodo}
+                removeTodo={removeTodo}
+                />
+          ))}
         </div>
       </div>
   );
