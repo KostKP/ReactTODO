@@ -26,19 +26,20 @@ function App() {
   const [todos, setTodos] = React.useState([
     {
       text: "This is a sampe todo",
+      color: "#F5F5F5",
       isDone: false
     }
   ]);
 
   function Todo({ task, index, markTodo, removeTodo }) {
     return (
-      <div class="task">
-      <div class="task-cl"/>
+    <div class="task">
+      <div style={{backgroundColor: task.color}} class="task-cl"/>
       <span style={{ textDecoration: task.isDone ? "line-through" : "" }}>{task.text}</span>
       <div class="task-controls">
         <div class="toggle">
-          <input type="checkbox" id="toggle" />
-          <label for="toggle"></label>
+          <input type="checkbox" id={"task-toggle"} onChange={e => markTodo(index, true)}/>
+          <label for={"task-toggle"}></label>
         </div>
         <button class="checkbutton" onClick={() => removeTodo(index)}><TrashFill/></button>
       </div>
@@ -58,7 +59,7 @@ function App() {
     const handleSubmit = e => {
       e.preventDefault();
       if (!value) return;
-      addTodo(value);
+      addTodo(value, Colors.palette[cls].hex);
       setValue("");
     };
   
@@ -73,14 +74,14 @@ function App() {
     );
   }
 
-  const addTodo = text => {
-    const newTodos = [...todos, { text }];
+  const addTodo = (text, color) => {
+    const newTodos = [...todos, { text, color }];
     setTodos(newTodos);
   };
 
-  const markTodo = index => {
+  const markTodo = (index, active) => {
     const newTodos = [...todos];
-    newTodos[index].isDone = true;
+    newTodos[index].isDone = active;
     setTodos(newTodos);
   };
 
@@ -89,21 +90,6 @@ function App() {
     newTodos.splice(index, 1);
     setTodos(newTodos);
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
