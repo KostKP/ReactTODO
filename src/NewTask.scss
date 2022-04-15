@@ -1,0 +1,76 @@
+@font-face {
+	font-family: 'Roboto Slab'; 
+	src: url('./fonts/RobotoSlab-Regular.woff');
+    font-style: normal;
+    font-weight: normal;
+}
+
+input.new-task-input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+input.new-task-input {
+  width: calc(100% - 20px);
+  background-color: #202020;
+  border-style: none;
+  height: 38px;
+  border-radius: 5px;
+  margin: 10px;
+  padding-left: 40px;
+  padding-right: 130px;
+  color: #f5f5f5;
+  font-size: 22px;
+  font-family: 'Roboto Slab';
+  position: absolute;
+  right: 0;
+  left: 0;
+  
+}
+
+button.add-task-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #F5F5F5;
+    border-style: none;
+    height: 38px;
+    border-radius: 5px;
+    margin: 10px;
+    color: #202020;
+    font-size: 22px;
+    font-family: 'Roboto Slab';
+    transition: all 0.25s ease;
+}
+
+  
+button.add-task-button:active {
+    background-color: #424242;
+    color: #F5F5F5;
+    transition: all 0s
+  }
+
+
+button.add-task-button:focus { outline:0; }
+
+
+
+.icon {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 29px;
+  left: 17px;
+  transform: translateY(-50%) rotateY(180deg);
+  transition: all 0.25s ease;
+}
+.icon:active {
+  transform: translateY(-50%);
+  transition: all 0s ease;
+}
+
+
+
+
+

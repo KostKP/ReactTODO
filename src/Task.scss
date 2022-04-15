@@ -1,0 +1,133 @@
+.task > .task-controls > .toggle {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  }
+    
+    .toggle > label {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: #DA0037;
+      border-radius: 5px;
+      cursor: pointer;
+      
+      -webkit-tap-highlight-color: transparent;
+      
+      &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition:width 0.2s cubic-bezier(0, -1.85, .27, 1.75);
+        height: 20px;
+        width: 20px;
+        border-radius: 46px;
+  box-shadow: inset 0px 0px 0px 5px #fff;
+      }
+    }
+  
+    .toggle > input {
+      display: none;
+      &:checked + label {
+        background-color: #A6CB12;
+      
+        
+        &:before {
+          width: 5px;
+          background-color: #fff;
+        }
+      }
+    }
+  
+
+.task-controls {
+  float: right;
+  display: flex;
+}
+
+
+
+button.checkbutton {
+  background-color: #F5F5F5;
+  border-style: none;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  margin: 5px;
+  color: #202020;
+  font-family: 'RobotoSlab-Regular';
+  vertical-align: top;
+  float: right;
+  transition: all 0.25s ease;
+}
+button.checkbutton > svg {
+  height: 26px;
+  width: 26px;
+  vertical-align: middle;
+}
+
+button.checkbutton:active {
+  background-color: #424242;
+  color: #F5F5F5;
+  transition: all 0s
+}
+
+button.checkbutton:focus { outline:0; }
+
+
+
+
+.task-container {
+  overflow-y: scroll;
+  overflow: auto;
+  flex: 1;
+}
+
+
+
+
+
+
+
+
+
+
+.icon-filter {
+  width: 25px;
+  height: 25px;
+}
+
+.task {
+  display: flex;
+  height: 50px;
+  background-color: #202020;
+  border-radius:  5px;
+  margin: 10px;
+  justify-content: space-between;
+}
+.task > span{
+  font-size: 35px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 2px;
+  color: #F5F5F5;
+  font-family: 'Roboto Slab';
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  width:100%;
+}
+
+
+div.task > div.task-cl {
+  background-color: rgb(41, 162, 213);
+  min-width: 10px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 5px;
+}

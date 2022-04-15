@@ -1,0 +1,21 @@
+div.header-expand {
+  height: 110px;
+  transition: all 0.15s ease-in-out
+}
+
+div.header-add-block {
+  visibility: hidden;
+  opacity: 0;
+  background-color: #141414;
+  top: 51px;
+  width: 100%;
+  position: absolute;
+  height: 57px;
+  transition: all 0.2s ease-in-out;
+}
+div.header-expand > div.header-add-block {
+  opacity: 100;
+  visibility:visible;
+  transition-delay: 0.15s;
+  transition: all 0.25s ease-in-out;
+}
