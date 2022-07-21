@@ -107,6 +107,7 @@ button.checkbutton:focus { outline:0; }
   border-radius:  5px;
   margin: 10px;
   justify-content: space-between;
+  //animation: bounceInRight 0.5s;
 }
 .task > span{
   font-size: 35px;
@@ -129,4 +130,23 @@ div.task > div.task-cl {
   height: 40px;
   border-radius: 5px;
   margin: 5px;
+}
+
+
+
+@keyframes bounceInRight {
+  0% {
+      opacity: 0;
+      transform: translate3d(3000px, 0, 0)
+  }
+  60% {
+      opacity: 1;
+      transform: translate3d(-25px, 0, 0)
+  }
+  75% {
+      transform: translate3d(10px, 0, 0)
+  }
+  90% {
+      transform: translate3d(-5px, 0, 0)
+  }
 }

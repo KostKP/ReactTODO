@@ -33,13 +33,13 @@ function App() {
 
   function Todo({ task, index, markTodo, removeTodo }) {
     return (
-    <div class="task">
+    <div class="task" style={{animationDelay: '0.'+index+'s'}}>
       <div style={{backgroundColor: task.color}} class="task-cl"/>
       <span style={{ textDecoration: task.isDone ? "line-through" : "" }}>{task.text}</span>
       <div class="task-controls">
         <div class="toggle">
-          <input type="checkbox" id={"task-toggle"} onChange={e => markTodo(index, true)}/>
-          <label for={"task-toggle"}></label>
+          <input type="checkbox" id={"task-toggle-"+index} onChange={() => {markTodo(index, !task.isDone)}} defaultChecked={task.isDone}/>
+          <label for={"task-toggle-"+index}></label>
         </div>
         <button class="checkbutton" onClick={() => removeTodo(index)}><TrashFill/></button>
       </div>
@@ -92,8 +92,6 @@ function App() {
   };
 
 
-
-
   return (
       <div class="background-main">
         <div class="app-header">
@@ -120,7 +118,7 @@ function App() {
             </div>
           </div>
         <div class="task-container">
-          {todos.map((task, index) => (
+          {todos.filter(el => filter==="ALL" || (el.isDone && filter==="DONE") || (!el.isDone && filter==="NDONE")).map((task, index) => (
           <Todo
                 key={index}
                 index={index}
